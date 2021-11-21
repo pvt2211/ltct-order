@@ -3,12 +3,12 @@ module.exports = function(app) {
   var productsCtrl = require('./controllers/ProductsController');
 
   // todoList Routes
-  app.route('/products')
+  app.route('/orders')
     .get(productsCtrl.get)
-    .post(productsCtrl.store);
+    .post(productsCtrl.insert);
 
 
-  app.route('/products/:productId')
+  app.route('/orders/:orderId')
     .get(productsCtrl.detail)
     .put(productsCtrl.update)
     .delete(productsCtrl.delete);
