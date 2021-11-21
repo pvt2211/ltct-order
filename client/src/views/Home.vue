@@ -1,62 +1,67 @@
 <template>
-  <div class="container mt-4">
-    <b-form-input
-      v-model="textFilter"
-      placeholder="Tìm kiếm theo tên sản phẩm"
-      class="mt-3 mb-3"
-    ></b-form-input>
-    <b-tabs
-      v-model="tabs.value"
-      justified
-      active-nav-item-class="font-weight-bold text-uppercase text-danger"
-      content-class="mt-3"
-    >
-      <b-tab
-        v-for="(tab, index) in tabs.options"
-        :key="index"
-        :title="tab"
-        :active="index === 0"
+  <div>
+    <Header />
+    <div class="container mt-4">
+      <b-form-input
+        v-model="textFilter"
+        placeholder="Tìm kiếm theo tên sản phẩm"
+        class="mt-3 mb-3"
+      ></b-form-input>
+      <b-tabs
+        v-model="tabs.value"
+        justified
+        active-nav-item-class="font-weight-bold text-uppercase text-danger"
+        content-class="mt-3"
       >
-        <template v-if="ordersFilterWithSearch.length">
-          <div
-            v-for="(order, index) in ordersFilterWithSearch"
-            :key="`order${index}`"
-            class="d-flex border-top border-bottom p-2 cursor-pointer"
-            @click="goToDetail(order.id)"
-          >
-            <img :src="order.picture" alt="" class="orders-img mr-2" />
-            <div class="d-flex justify-content-between w-100">
-              <div class="mr-4 col-8 text-left">
-                <div>{{ order.name }}</div>
-                <div class="text-small">{{ 'Phân loại hàng: ' + order.color + ' , ' + 'Size ' + order.size }}</div>
-                <div>{{ 'Số lượng : ' +  order.quantity }}</div>
-              </div>
-              <div class="d-flex flex-column justify-content-between col-4 text-right">
-                <div class="text-danger text-bold">{{ orderStateMap(order.state) }}</div>
-                <div class="text-xx">
-                  <span class="text-line mr-2">{{ order.price * order.quantity }}</span>
-                  <span class="text-danger text-bold mr-1">{{ order.price * order.promote / 100 * order.quantity  }}</span>
-                  <span class="text-small text-bold">{{ `đồng` }}</span>
+        <b-tab
+          v-for="(tab, index) in tabs.options"
+          :key="index"
+          :title="tab"
+          :active="index === 0"
+        >
+          <template v-if="ordersFilterWithSearch.length">
+            <div
+              v-for="(order, index) in ordersFilterWithSearch"
+              :key="`order${index}`"
+              class="d-flex border-top border-bottom p-2 cursor-pointer"
+              @click="goToDetail(order.id)"
+            >
+              <img :src="order.picture" alt="" class="orders-img mr-2" />
+              <div class="d-flex justify-content-between w-100">
+                <div class="mr-4 col-8 text-left">
+                  <div>{{ order.name }}</div>
+                  <div class="text-small">{{ 'Phân loại hàng: ' + order.color + ' , ' + 'Size ' + order.size }}</div>
+                  <div>{{ 'Số lượng : ' +  order.quantity }}</div>
+                </div>
+                <div class="d-flex flex-column justify-content-between col-4 text-right">
+                  <div class="text-danger text-bold">{{ orderStateMap(order.state) }}</div>
+                  <div class="text-xx">
+                    <span class="text-line mr-2">{{ order.price * order.quantity }}</span>
+                    <span class="text-danger text-bold mr-1">{{ order.price * order.promote / 100 * order.quantity  }}</span>
+                    <span class="text-small text-bold">{{ `đồng` }}</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </template>
-        <div v-else>Không có kết quả gì</div>
-      </b-tab>
-    </b-tabs>
+          </template>
+          <div v-else>Không có kết quả gì</div>
+        </b-tab>
+      </b-tabs>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import axios from "axios";
+import Header from '../components/Header.vue'
 // import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
   name: "Home",
   components: {
     // HelloWorld,
+    Header,
   },
   data() {
     return {
