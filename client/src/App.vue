@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav" class="border-bottom">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/detail">Detail</router-link>
     </div>
     <router-view />
   </div>
@@ -49,5 +49,10 @@
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.text-label {
+  color: rgba(0,0,0,.54);
+  font-size: 16px;
 }
 </style>

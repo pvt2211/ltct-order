@@ -1,5 +1,6 @@
 <template>
   <div class="container mt-4">
+    <h1 class="text-left cursor-pointer" @click="$router.push('')">Đơn hàng</h1>
     <b-form-input
       v-model="textFilter"
       placeholder="Tìm kiếm theo tên sản phẩm"
