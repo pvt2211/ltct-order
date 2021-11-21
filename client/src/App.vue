@@ -1,9 +1,11 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div id="app">
+    <div id="nav" class="border-bottom">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view />
   </div>
-  <router-view />
 </template>
 
 <style>
@@ -26,5 +28,26 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.text-xx {
+  font-size: 26px;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text-small {
+  font-size: 12px;
+  color: rgba(0,0,0,.54);
+}
+
+.text-line {
+  text-decoration-line: line-through;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 </style>
