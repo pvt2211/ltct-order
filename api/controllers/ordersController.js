@@ -7,12 +7,11 @@ const db = require('../db')
 const table = 'orders'
 
 module.exports = {
+    welcome: (req, res) => {
+        res.json({message: 'Welcome!'})
+    },
     get: (req, res) => {
-        let sql = 'SELECT * FROM orders ORDER BY id DESC'
-        db.query(sql, (err, response) => {
-            if (err) throw err
-            res.json(response)
-        })
+        res.json({message: 'test!'})
     },
     detail: (req, res) => {
         let sql = 'SELECT * FROM orders WHERE id = ?'

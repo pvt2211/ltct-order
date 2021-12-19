@@ -2,7 +2,9 @@
 module.exports = function(app) {
   var ordersController = require('./controllers/ordersController');
 
-  // todoList Routes
+  app.route('')
+    .get(ordersController.welcome)
+
   app.route('/orders')
     .get(ordersController.get)
     .post(ordersController.insert);
