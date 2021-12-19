@@ -13,14 +13,13 @@
   ],
   "author": "TungPhung",
   "license": "ISC",
-  "devDependencies": {
-    "mysql": "^2.15.0",
-    "nodemon": "^1.17.5"
-  },
+  "devDependencies": {},
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.15",
     "util": "^0.10.3"
   }
 }
