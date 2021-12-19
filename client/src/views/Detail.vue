@@ -34,7 +34,7 @@
             `giảm` + order.promote + "%"
           }}</span>
         </div>
-        <div class="pl-3 d-flex align-items-center">
+        <div class="pl-3 d-flex align-items-center mt-3 mb-2">
           <span class="text-label col-3 p-0">Màu sắc</span>
           <span class="col-9 p-0">{{ order.color }}</span>
         </div>

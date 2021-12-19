@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header />
     <div class="container mt-4">
     <h1 class="text-left cursor-pointer" @click="$router.push('')">Đơn hàng</h1>
     <b-form-input
@@ -55,13 +54,11 @@
 <script>
 // @ is an alias to /src
 import axios from "axios";
-import Header from '../components/Header.vue';
 // import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
   name: "Home",
   components: {
-    Header
     // HelloWorld,
   },
   data() {
@@ -116,7 +113,7 @@ export default {
         return [];
       } else {
         return this.ordersFilter.filter((order) =>
-          order.name.includes(this.textFilter)
+          order.name.toUpperCase().includes(this.textFilter.toUpperCase())
         );
       }
     },
