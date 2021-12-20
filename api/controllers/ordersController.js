@@ -1,23 +1,16 @@
 'use strict'
-
 const util = require('util')
 const mysql = require('mysql')
 const db = require('../db')
 
-const table = 'orders'
+const orders = require('../models/orders.js')
 
 module.exports = {
     welcome: (req, res) => {
         res.json({message: 'Welcome!'})
     },
     get: (req, res) => {
-        let sql = 'SELECT * FROM orders ORDER BY id DESC'
-        db.query(sql, (err, response) => {
-            if (err) throw err
-            res.json(response)
-        })
-        // res.json({message: 'test!'})
-
+        orders.getOrders().then(response => res.json(response)).catch
     },
     detail: (req, res) => {
         let sql = 'SELECT * FROM orders WHERE id = ?'
