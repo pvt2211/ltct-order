@@ -4,20 +4,16 @@ const mysql = require('mysql')
 const db = require('../db')
 
 const orders = require('../models/orders.js')
-
+const service = require('../services/ordersService.js')
 module.exports = {
     welcome: (req, res) => {
         res.json({message: 'Welcome!'})
     },
-    get: (req, res) => {
-        orders.getOrders().then(response => res.json(response)).catch
+    get: async (req, res) => {
+        res.json(await orders.getOrders())
     },
     detail: (req, res) => {
-        let sql = 'SELECT * FROM orders WHERE id = ?'
-        db.query(sql, [req.params.orderId], (err, response) => {
-            if (err) throw err
-            res.json(response[0])
-        })
+        orders.getOrdersById(req.params.orderId).then(response => res.json(response)).catch
     },
     update: (req, res) => {
         let data = req.body;
