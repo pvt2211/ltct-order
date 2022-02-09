@@ -7,7 +7,9 @@ module.exports = {
     return new Promise((resolve, reject) => {
       db.query(sql, (err, response) => {
         if (err) reject(err);
-        else resolve(response);
+        else {
+          resolve(response);
+        }
       });
     });
   },
@@ -23,7 +25,6 @@ module.exports = {
   },
   getProductsById: (productId) => {
     let sql = "SELECT * FROM products WHERE id = ?";
-    
     return new Promise((resolve, reject) => {
       db.query(sql, [productId], (err, response) => {
         if (err) reject(err);

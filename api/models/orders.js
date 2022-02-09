@@ -6,19 +6,21 @@ module.exports = {
 
   getOrders: async () => {
     const allOrders = await service.getOrders()
-    allOrders?.forEach( element => {
-      service.getOrderDetailByOrderId(element.orderId).then(response => {
-        // response.forEach(value => {
-        //   service.getProductsById(value.productId).then(res => {
-        //     element.products.push(res)
-        //     console.log(element.products);
-        //   })
-        // })
-        element.products = response
+    const newOrders = JSON.parse((JSON.stringify(allOrders)))
+    allOrders?.forEach( async (element,index) => {
+      newOrders[index].products = []
+      await service.getOrderDetailByOrderId(element.orderId).then(response => {
+        response?.forEach(async (elementOrderDetail) => {
+          await service.getProductsById(elementOrderDetail.productId).then((response) => 
+          {  
+            newOrders[index].products.push(JSON.parse((JSON.stringify(response))))
+          })
+          .catch()
+        });
       })
       .catch
     });
-    return allOrders
+    return newOrders
   },
   getOrderDetailByOrderId: (orderId) => {
     let sql = "SELECT * FROM order_detail WHERE orderId = ? ORDER BY id DESC";
